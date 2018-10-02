@@ -1,0 +1,57 @@
+@startuml
+
+class Actor {
+
+}
+
+class Level {
+
+}
+note top: The level also contains all the\n 3D assets (ramp, ground...). \nThese are not representing because\n they do not affect the logic
+
+class Player {
+
+}
+
+Class AI {
+
+}
+
+class RollingBall {
+
+}
+
+class Ennemy {
+
+}
+
+class BasicEnnemy {
+
+}
+
+Class PowerUp {
+
+}
+
+class SuperSpeed {
+
+}
+
+Actor <|-- RollingBall
+Actor <|-- Ennemy
+Actor <|-- PowerUp
+Ennemy <|-- BasicEnnemy
+PowerUp <|-- SuperSpeed
+
+Level  *-- "*" Actor
+
+Player -- "1" RollingBall
+
+AI -- "*" Ennemy
+
+RollingBall *-- "0..1" PowerUp
+
+hide empty members
+hide circle
+
+@enduml
