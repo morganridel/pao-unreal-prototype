@@ -43,13 +43,13 @@ Actor <|-- PowerUp
 Ennemy <|-- BasicEnnemy
 PowerUp <|-- SuperSpeed
 
-Level  *-- "*" Actor
+Level" 1" *-- "*" Actor
 
-Player -- "1" RollingBall
+Player "0..1" -- "1" RollingBall
 
-AI -- "*" Ennemy
+AI "0..1" -- "*" Ennemy
 
-RollingBall *-- "0..1" PowerUp
+RollingBall "0..1"  *-- "0..1" PowerUp
 
 hide empty members
 hide circle
