@@ -1,0 +1,61 @@
+@startuml	
+
+package "Unreal Engine 4 API" {
+class ULevel {
+}
+class AActor {
+}
+class UActorComponent {
+}
+class AController {
+}
+class APlayerController {
+}
+class AAIController {
+}
+class APawn {
+}
+}
+
+class RollingBall {
+	-float MaxVelocity
+	+void RollForward(float value)
+	+void RollRight(float value)
+	+void UsePowerUp()
+}
+
+class Ennemy {
+
+}
+
+class BasicEnnemy {
+
+}
+
+class PowerUp {
+
+}
+
+class SuperSpeed {
+
+}
+
+
+ULevel "1" *-- "*" AActor
+AActor "*" o-- "*" UActorComponent
+AActor <|-- AController
+AController <|-- APlayerController
+AController <|-- AAIController
+AActor <|-- APawn
+AController "0..1"  o-- "1" APawn : possess >
+
+APawn <|--- RollingBall
+APawn <|--- Ennemy
+Ennemy <|-- BasicEnnemy
+APlayerController "0..1" --- "1" RollingBall
+AAIController "0..1" --- "1" Ennemy
+AActor <|--- PowerUp
+PowerUp <|-- SuperSpeed
+RollingBall "0..1" *-- "0..1" PowerUp : has >
+
+@enduml
