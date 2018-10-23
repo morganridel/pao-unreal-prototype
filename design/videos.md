@@ -8,3 +8,7 @@
 ## 2018-09-26
 
 * https://youtu.be/oq7MhbWhx6Q
+
+## 2018-10-23
+
+* https://youtu.be/UgbGs9-5F8U
