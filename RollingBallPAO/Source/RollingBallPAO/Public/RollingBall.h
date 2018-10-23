@@ -41,6 +41,6 @@ public:
 private:
 	// Maximum velocity reachable by the ball
 	UPROPERTY(EditDefaultsOnly)
-	float MaxVelocity;
+	float MaxVelocity = 100;
 	
 };
