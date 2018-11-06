@@ -25,6 +25,8 @@ void ARollingBall::BeginPlay()
 void ARollingBall::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	DrawDebugLine(GetWorld(), GetActorLocation(), GetActorLocation() + GetVelocity(), FColor::Green, false, (-1.0F), 0, 10);
+	UE_LOG(LogTemp, Warning, TEXT("Ball Velocity: %f"), GetVelocity().Size());
 
 }
 
@@ -35,8 +37,19 @@ void ARollingBall::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 
 }
 
+void ARollingBall::SetBall(UPrimitiveComponent * BallToSet)
+{
+	Ball = BallToSet;
+}
+
 void ARollingBall::RollForward(float value)
 {
+
+	if (!Ball) 
+	{ 
+		UE_LOG(LogTemp, Warning, TEXT("No ball set"));
+		return; 
+	}
 	
 
 	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
@@ -46,16 +59,13 @@ void ARollingBall::RollForward(float value)
 
 	FVector ForwardVector = GetActorForwardVector();
 	ForwardVector = CameraVector;
-	float ForceStrength = value * MaxVelocity;
+	float ForceStrength = value * MaxRollingForce;
 	FVector ForceLocation = GetActorLocation();
-
-	UE_LOG(LogTemp, Warning, TEXT("Rolling forward vector: %s"), *ForwardVector.ToString());
 
 	DrawDebugLine(GetWorld(), ForceLocation, ForceLocation+ForwardVector*2*ForceStrength, FColor::Red, false, (-1.0F), 0, 10);
 
 	FVector Force = ForwardVector * ForceStrength;
-	UPrimitiveComponent* BallRoot = Cast<UPrimitiveComponent>(GetRootComponent());
-	BallRoot->AddForceAtLocation(Force, ForceLocation);
+	Ball->AddForceAtLocation(Force, ForceLocation);
 
 
 	
@@ -63,6 +73,12 @@ void ARollingBall::RollForward(float value)
 
 void ARollingBall::RollRight(float value)
 {
+	if (!Ball)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("No ball set"));
+		return;
+	}
+
 	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
 	auto CameraRotator = PlayerController->PlayerCameraManager->GetCameraRotation();
 	CameraRotator.Pitch = 0;
@@ -71,13 +87,12 @@ void ARollingBall::RollRight(float value)
 
 	FVector RightVector = GetActorRightVector();
 	RightVector = CameraVector;
-	float ForceStrength = value * MaxVelocity;
+	float ForceStrength = value * MaxRollingForce;
 	FVector ForceLocation = GetActorLocation();
 
 	DrawDebugLine(GetWorld(), ForceLocation, ForceLocation + RightVector * 2 * ForceStrength, FColor::Red, false, (-1.0F), 0, 10);
 
 	FVector Force = RightVector * ForceStrength;
-	UPrimitiveComponent* BallRoot = Cast<UPrimitiveComponent>(GetRootComponent());
-	BallRoot->AddForceAtLocation(Force, ForceLocation);
+	Ball->AddForceAtLocation(Force, ForceLocation);
 }
 

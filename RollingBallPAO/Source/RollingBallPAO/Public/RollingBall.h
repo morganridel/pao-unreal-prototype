@@ -26,6 +26,9 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	UFUNCTION(BlueprintCallable)
+	void SetBall(UPrimitiveComponent* BallToSet);
+
 	/** Move the ball forward
 	@param value - Strengh of the movement between -1 and 1
 	*/
@@ -39,8 +42,10 @@ public:
 	void RollRight(float value);
 
 private:
-	// Maximum velocity reachable by the ball
+	// Maximum force on the ball
 	UPROPERTY(EditDefaultsOnly)
-	float MaxVelocity = 100;
+	float MaxRollingForce = 15000;
+
+	UPrimitiveComponent* Ball = nullptr;
 	
 };
