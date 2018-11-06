@@ -12,3 +12,7 @@
 ## 2018-10-23
 
 * https://youtu.be/UgbGs9-5F8U
+
+## 2018-11-07
+
+* https://youtu.be/KDLnYoPMvME
