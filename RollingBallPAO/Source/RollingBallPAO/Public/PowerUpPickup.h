@@ -25,7 +25,12 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	UPROPERTY(EditDefaultsOnly, Category="Power Up")
-	TSubclassOf<UPowerUp> PowerUp = nullptr;
-	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Power Up")
+	TSubclassOf<UPowerUp> PowerUpClass = nullptr;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Power Up")
+	FString PowerUpName = "Generic Power Up";
+
+	UFUNCTION(BlueprintCallable)
+	bool OnBeginOverlap(AActor* OtherActor);
 };

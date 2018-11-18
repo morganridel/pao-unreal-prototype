@@ -6,6 +6,8 @@
 #include "GameFramework/Pawn.h"
 #include "RollingBall.generated.h"
 
+class UPowerUp;
+
 UCLASS()
 class ROLLINGBALLPAO_API ARollingBall : public APawn
 {
@@ -41,11 +43,20 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void RollRight(float value);
 
+	UFUNCTION(BlueprintCallable)
+	bool UsePowerUp();
+
+	UPROPERTY(BlueprintReadOnly)
+	UPowerUp* PowerUp = nullptr;
+
+	UPrimitiveComponent* Ball = nullptr;
+
 private:
 	// Maximum force on the ball
 	UPROPERTY(EditDefaultsOnly)
 	float MaxRollingForce = 15000;
 
-	UPrimitiveComponent* Ball = nullptr;
+	
+
 	
 };

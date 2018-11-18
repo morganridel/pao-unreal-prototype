@@ -25,6 +25,8 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	virtual void Use() PURE_VIRTUAL(UPowerUp::Use, ;);
-		
+	
+	UPROPERTY(BlueprintReadOnly, Category = "Power Up")
+	FString name;
 	
 };

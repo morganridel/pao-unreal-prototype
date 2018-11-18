@@ -4,6 +4,9 @@
 #include "DrawDebugHelpers.h"
 #include "Engine/World.h"
 #include "GameFramework/PlayerController.h"
+#include "PowerUp.h"
+#include <EngineGlobals.h>
+#include <Engine/Engine.h>
 
 
 // Sets default values
@@ -26,8 +29,13 @@ void ARollingBall::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	DrawDebugLine(GetWorld(), GetActorLocation(), GetActorLocation() + GetVelocity(), FColor::Green, false, (-1.0F), 0, 10);
-	UE_LOG(LogTemp, Warning, TEXT("Ball Velocity: %f"), GetVelocity().Size());
+	//UE_LOG(LogTemp, Warning, TEXT("Ball Velocity: %f"), GetVelocity().Size());
 
+	FString PowerUpName = "";
+	if (PowerUp) {
+		PowerUpName = PowerUp->GetReadableName();
+	}
+	//UE_LOG(LogTemp, Warning, TEXT("Power Up : %s"), *PowerUpName);
 }
 
 // Called to bind functionality to input
@@ -94,5 +102,17 @@ void ARollingBall::RollRight(float value)
 
 	FVector Force = RightVector * ForceStrength;
 	Ball->AddForceAtLocation(Force, ForceLocation);
+}
+
+bool ARollingBall::UsePowerUp()
+{
+	if (!PowerUp) { 
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("No power up possessed"));
+		return false;
+	}
+
+	PowerUp->Use();
+	PowerUp = nullptr;
+	return true;
 }
 
