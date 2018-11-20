@@ -16,3 +16,7 @@
 ## 2018-11-07
 
 * https://youtu.be/KDLnYoPMvME
+
+## 2018-11-20
+
+* [https://youtu.be/kskkIHy_ebg](https://youtu.be/kskkIHy_ebg)
