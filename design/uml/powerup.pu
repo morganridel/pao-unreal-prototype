@@ -1,0 +1,42 @@
+@startuml
+
+package "Unreal Engine 4 API" {
+    class AActor {
+    }
+    class UActorComponent {
+    }
+}
+
+class URollingBall {
+	-float MaxRollingForce
+	+void RollForward(float value)
+	+void RollRight(float value)
+	+void UsePowerUp()
+}
+
+abstract class UPowerUp {
+    +FString name
+    +{abstract} Use()
+}
+
+abstract class UPowerUpPickup {
+    +FString PowerUpName
+    +TSubclassOf<UPowerUp> PowerUpClass
+    +bool OnBeginOverlap(AActor* OtherActor)
+}
+note top:Is extended in blueprints which will be placed in the level.\nWill construct a UPowerUp and assign it to the ball
+
+class USuperSpeed {
+    +Use()
+}
+
+AActor "*" o-- "*" UActorComponent
+
+URollingBall "0..1" *-- "0..1" UPowerUp : has >
+UPowerUp --|> UActorComponent
+AActor <|--- URollingBall
+USuperSpeed --|> UPowerUp
+
+
+
+@enduml
