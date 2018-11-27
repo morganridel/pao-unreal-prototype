@@ -20,3 +20,9 @@
 ## 2018-11-20
 
 * [https://youtu.be/kskkIHy_ebg](https://youtu.be/kskkIHy_ebg)
+
+## 2018-11-27
+
+* [https://youtu.be/8x5vVB1E03M](https://youtu.be/8x5vVB1E03M)
+
+  
