@@ -32,5 +32,5 @@ public:
 	FString PowerUpName = "Generic Power Up";
 
 	UFUNCTION(BlueprintCallable)
-	bool OnBeginOverlap(AActor* OtherActor);
+	bool GivePowerUp(AActor* OtherActor);
 };

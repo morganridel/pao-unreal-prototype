@@ -30,7 +30,7 @@ void APowerUpPickup::Tick(float DeltaTime)
 
 }
 
-bool APowerUpPickup::OnBeginOverlap(AActor* OtherActor)
+bool APowerUpPickup::GivePowerUp(AActor* OtherActor)
 {
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Power up overlap!"));
 
@@ -52,7 +52,7 @@ bool APowerUpPickup::OnBeginOverlap(AActor* OtherActor)
 	PowerUpComponent->RegisterComponent();
 
 	
-	RollingBall->PowerUp = PowerUpComponent;
+	RollingBall->SetPowerUp(PowerUpComponent);
 
 	return true;
 

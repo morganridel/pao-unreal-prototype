@@ -49,6 +49,16 @@ void ARollingBall::SetBall(UPrimitiveComponent * BallToSet)
 {
 	Ball = BallToSet;
 }
+UPowerUp * ARollingBall::GetPowerUp()
+{
+	return PowerUp;
+}
+
+void ARollingBall::SetPowerUp(UPowerUp * PowerUpToSet)
+{
+	this->PowerUp = PowerUpToSet;
+	OnNewPowerUp.Broadcast();
+}
 
 void ARollingBall::RollForward(float value)
 {
@@ -74,8 +84,6 @@ void ARollingBall::RollForward(float value)
 
 	FVector Force = ForwardVector * ForceStrength;
 	Ball->AddForceAtLocation(Force, ForceLocation);
-
-
 	
 }
 
@@ -112,7 +120,8 @@ bool ARollingBall::UsePowerUp()
 	}
 
 	PowerUp->Use();
-	PowerUp = nullptr;
+	SetPowerUp(nullptr);
+	OnRemovedPowerUp.Broadcast();
 	return true;
 }
 

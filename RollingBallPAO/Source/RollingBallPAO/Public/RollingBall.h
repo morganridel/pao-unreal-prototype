@@ -6,6 +6,8 @@
 #include "GameFramework/Pawn.h"
 #include "RollingBall.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FPowerUpDelegate);
+
 class UPowerUp;
 
 UCLASS()
@@ -31,6 +33,12 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void SetBall(UPrimitiveComponent* BallToSet);
 
+	UFUNCTION(BlueprintCallable)
+	UPowerUp* GetPowerUp();
+
+	UFUNCTION(BlueprintCallable)
+	void SetPowerUp(UPowerUp* PowerUpToSet);
+
 	/** Move the ball forward
 	@param value - Strengh of the movement between -1 and 1
 	*/
@@ -46,15 +54,21 @@ public:
 	UFUNCTION(BlueprintCallable)
 	bool UsePowerUp();
 
-	UPROPERTY(BlueprintReadOnly)
-	UPowerUp* PowerUp = nullptr;
-
 	UPrimitiveComponent* Ball = nullptr;
 
 private:
 	// Maximum force on the ball
 	UPROPERTY(EditDefaultsOnly)
 	float MaxRollingForce = 15000;
+
+	UPROPERTY()
+	UPowerUp* PowerUp = nullptr;
+
+	UPROPERTY(BlueprintAssignable)
+	FPowerUpDelegate OnNewPowerUp;
+
+	UPROPERTY(BlueprintAssignable)
+	FPowerUpDelegate OnRemovedPowerUp;
 
 	
 
