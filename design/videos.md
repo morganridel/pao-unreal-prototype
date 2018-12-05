@@ -25,4 +25,7 @@
 
 * [https://youtu.be/8x5vVB1E03M](https://youtu.be/8x5vVB1E03M)
 
+## 2018-12-05
+
+* [https://youtu.be/_9WSbvxCUW8](https://youtu.be/_9WSbvxCUW8)
   
