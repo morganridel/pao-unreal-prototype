@@ -28,4 +28,8 @@
 ## 2018-12-05
 
 * [https://youtu.be/_9WSbvxCUW8](https://youtu.be/_9WSbvxCUW8)
+
+## 2018-12-18
+
+* [https://youtu.be/-X_Ry597xCQ](https://youtu.be/-X_Ry597xCQ)
   
